@@ -16,6 +16,6 @@ spec:
   install:
     remediation:
       retries: 3
-    valuesFrom:
-    - kind: ConfigMap
-      name: consul-values # Generate config map in Kustomization.yaml which is created from values.yaml
+  valuesFrom:
+  - kind: ConfigMap
+    name: consul-values # Generate config map in Kustomization.yaml which is created from values.yaml
