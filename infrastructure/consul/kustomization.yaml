@@ -5,6 +5,6 @@ resources:
   - namespace.yaml
   - release.yaml
 configMapGenerator:
-  - name: helm-consul-values
+  - name: consul-values
     files:
       - values.yaml=values.yaml
