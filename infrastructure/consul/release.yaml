@@ -18,4 +18,6 @@ spec:
       retries: 3
   valuesFrom:
   - kind: ConfigMap
-    name: consul-values # Generate config map in Kustomization.yaml which is created from values.yaml
+   # Generate config map in Kustomization.yaml which is created from values.yaml
+    name: consul-values
+    
