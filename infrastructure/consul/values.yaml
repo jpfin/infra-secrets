@@ -1,0 +1,12 @@
+global:
+ secretsBackend:
+  vault:
+    enabled: true
+
+client:
+  enabled: true
+
+server:
+  replicas: 2
+  disruptionBudget:
+    maxUnavailable: 0
