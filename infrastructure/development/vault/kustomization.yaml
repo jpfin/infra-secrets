@@ -7,5 +7,7 @@ configMapGenerator:
   - name: vault-values
     files:
       - values.yaml=override-values.yaml
+configurations:
+  - kustomizeconfig.yaml
 patchesStrategicMerge:
   - values.yaml
