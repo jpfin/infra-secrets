@@ -1,0 +1,92 @@
+# Default values https://github.com/hashicorp/consul-k8s/blob/main/charts/consul/values.yaml
+#
+# Documentation https://www.consul.io/docs/k8s/helm
+#
+# Holds values that affect multiple components of the chart.
+#global:
+  # secretsBackend is used to configure Vault as the secrets backend for the Consul on Kubernetes installation.
+  # The Vault cluster needs to have the Kubernetes Auth Method, KV2 and PKI secrets engines enabled
+  # and have necessary secrets, policies and roles created prior to installing Consul.
+  # See https://www.consul.io/docs/k8s/installation/vault for full instructions.
+  #
+  # The Vault cluster *must* not have the Consul cluster installed by this Helm chart as its storage backend
+  # as that would cause a circular dependency.
+  # It can have Consul as its storage backend as long as that Consul cluster is not running on this Kubernetes cluster
+  # and is being managed separately from this Helm installation.
+  #
+  # Note: When using Vault KV2 secrets engines the "data" field is implicitly required for Vault API calls,
+  # secretName should be in the form of  "vault-kv2-mount-path/data/secret-name".
+  # secretKey should be in the form of "key".
+#   secretsBackend:
+#   vault:
+#     enabled: true
+
+# client:
+#   enabled: true
+
+# server:
+#   replicas: 2
+#   disruptionBudget:
+#     maxUnavailable: 0
+#   affinity: null
+
+
+
+# Available parameters and their default values for the Consul chart.
+
+# Holds values that affect multiple components of the chart.
+global:
+  # The main enabled/disabled setting. If true, servers,
+  # clients, Consul DNS and the Consul UI will be enabled. Each component can override
+  # this default via its component-specific "enabled" config. If false, no components
+  # will be installed by default and per-component opt-in is required, such as by
+  # setting `server.enabled` to true.
+  enabled: true
+
+
+# Server, when enabled, configures a server cluster to run. This should
+# be disabled if you plan on connecting to a Consul cluster external to
+# the Kube cluster.
+server:
+
+  # The number of server agents to run. This determines the fault tolerance of
+  # the cluster. Please see the deployment table (https://consul.io/docs/internals/consensus#deployment-table)
+  # for more information.
+  replicas: 3
+
+  # This configures the PodDisruptionBudget (https://kubernetes.io/docs/tasks/run-application/configure-pdb/)
+  # for the server cluster.
+  disruptionBudget:
+    # This will enable/disable registering a PodDisruptionBudget for the server
+    # cluster. If this is enabled, it will only register the budget so long as
+    # the server cluster is enabled.
+    enabled: true
+
+    # The maximum number of unavailable pods. By default, this will be
+    # automatically computed based on the `server.replicas` value to be `(n/2)-1`.
+    # If you need to set this to `0`, you will need to add a
+    # --set 'server.disruptionBudget.maxUnavailable=0'` flag to the helm chart installation
+    # command because of a limitation in the Helm templating language.
+    # @type: integer
+    maxUnavailable: 0
+
+  # This value defines the affinity (https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity)
+  # for server pods. It defaults to allowing only a single server pod on each node, which
+  # minimizes risk of the cluster becoming unusable if a node is lost. If you need
+  # to run more pods per node (for example, testing on Minikube), set this value
+  # to `null`.
+  #
+  # Example:
+  #
+  # ```yaml
+  # affinity: |
+  #   podAntiAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       - labelSelector:
+  #           matchLabels:
+  #             app: {{ template "consul.name" . }}
+  #             release: "{{ .Release.Name }}"
+  #             component: server
+  #       topologyKey: kubernetes.io/hostname
+  # ```
+  affinity: null
