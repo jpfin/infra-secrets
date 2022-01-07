@@ -16,3 +16,7 @@ spec:
   install:
     remediation:
       retries: 3
+  valuesFrom:
+  - kind: ConfigMap
+   # Generate config map in Kustomization.yaml which is created from values.yaml
+    name: vault-values
