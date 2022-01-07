@@ -9,6 +9,8 @@ kind create cluster --name staging-vault
 # bootstrap flux
 flux bootstrap github --context=kind-staging-vault --owner=${GITHUB_ORG} --repository=infra-secrets --branch=main --path=clusters/staging --personal=false --private=false 
 
+flux bootstrap github --context=kind-development-vault --owner=${GITHUB_ORG} --repository=infra-secrets --branch=main --path=clusters/development --personal=false --private=false 
+
 ```
 
 ## Vault commmands
