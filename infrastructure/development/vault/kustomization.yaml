@@ -3,5 +3,9 @@ kind: Kustomization
 namespace: vault
 resources:
   - ../../base/vault
+configMapGenerator:
+  - name: vault-values
+    files:
+      - values.yaml=override-values.yaml
 patchesStrategicMerge:
-  - override-values.yaml
+  - values.yaml
