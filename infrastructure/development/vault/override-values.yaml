@@ -1,0 +1,14 @@
+###
+# Default values: https://github.com/hashicorp/vault-helm/blob/main/values.yaml
+###
+
+# Vault Helm Chart Value Overrides
+global:
+  enabled: false
+  tlsDisable: true
+
+server:
+  replicas: 2
+  bootstrapExpect: 1
+  disruptionBudget:
+    maxUnavailable: 0
