@@ -10,5 +10,3 @@ configMapGenerator:
       - values.yaml=values.yaml
 configurations:
   - kustomizeconfig.yaml
-patchesStrategicMerge:
-  - values.yaml
