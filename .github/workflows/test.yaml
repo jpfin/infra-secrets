@@ -17,7 +17,5 @@ jobs:
         uses: ./.github/actions/tools
       - name: Make script executable
         run: git update-index --chmod=+x ./scripts/validate.sh
-      - name: Validate manifests 1
-        run: ./scripts/jom.sh
       - name: Validate manifests
         run: ./scripts/validate.sh
