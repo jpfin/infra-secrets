@@ -1,0 +1,40 @@
+
+# Vault Helm Chart Value Overrides
+global:
+  enabled: true
+  tlsDisable: false
+
+server:
+
+  # For HA configuration and because we need to manually init the vault,
+  # we need to define custom readiness/liveness Probe settings
+  readinessProbe:
+    enabled: false
+
+  livenessProbe:
+    enabled: false
+
+  dev:
+    enabled: true
+
+    # Set VAULT_DEV_ROOT_TOKEN_ID value
+    devRootToken: "root"
+
+  standalone:
+    enabled: true
+
+  # Run Vault in "HA" mode.
+  ha:
+    enabled: false
+    replicas: 3
+    raft:
+      enabled: false
+      setNodeId: false
+
+      
+# Vault UI
+ui:
+  enabled: true
+  serviceType: "LoadBalancer"
+  serviceNodePort: null
+  externalPort: 8200
