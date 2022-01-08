@@ -16,6 +16,6 @@ jobs:
       - name: Setup tools
         uses: ./.github/actions/tools
       - name: Make script executable
-        run: chmod=+x ./scripts/validate.sh
+        run: git update-index --chmod=+x ./scripts/validate.sh
       - name: Validate manifests
         run: ./scripts/validate.sh
