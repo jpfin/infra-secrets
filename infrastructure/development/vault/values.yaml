@@ -1,6 +1,7 @@
 
-server:
 
+
+server:
   dev:
     enabled: true
 
