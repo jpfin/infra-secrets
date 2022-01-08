@@ -17,5 +17,5 @@ jobs:
         uses: ./.github/actions/tools
       - name: Validate manifests
         run: |
-          git update-index --chmod=+x ./.github/scripts/validate.sh
+          git update-index --chmod=+x ./scripts/validate.sh
           ./scripts/validate.sh
