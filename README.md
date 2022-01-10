@@ -54,4 +54,14 @@ kubectl exec -ti --namespace=vault vault-0 -- vault kv metadata delete secret/te
 # Delete specific version (v 4 in this example)
 kubectl exec -ti --namespace=vault vault-0 -- vault kv destroy -versions=4 secret/test
 
+# vault status
+kubectl exec --namespace=vault vault-0 -- vault status
+# iteratate showing status of i instances
+for i in {0..2} ; do kubectl exec --namespace=vault vault-$i -- vault status ; done
+
+# helm status
+helm status vault
+
+# describe pod
+kubectl describe pod --namespace=vault vault-0
 ```
