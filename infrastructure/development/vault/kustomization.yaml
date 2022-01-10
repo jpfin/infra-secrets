@@ -4,8 +4,7 @@ metadata:
   name: vault
 namespace: vault
 resources:
-  - namespace.yaml
-  - release.yaml
+  - ../../base/vault
 configMapGenerator:
   - name: vault-values
     files:

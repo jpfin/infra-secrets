@@ -6,9 +6,9 @@ namespace: vault
 resources:
   - namespace.yaml
   - release.yaml
-configMapGenerator:
-  - name: vault-values
-    files:
-      - values.yaml=values.yaml
-configurations:
-  - kustomizeconfig.yaml
+# configMapGenerator:
+#   - name: vault-values
+#     files:
+#       - values.yaml=values.yaml
+# configurations:
+#   - kustomizeconfig.yaml
