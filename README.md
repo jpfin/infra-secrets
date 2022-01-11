@@ -1,5 +1,9 @@
 # infra-secrets
 
+## Resources
+
+Helm examples: https://www.vaultproject.io/docs/platform/k8s/helm/examples
+
 ## Dev creation
 
 ```
@@ -58,6 +62,9 @@ kubectl exec -ti --namespace=vault vault-0 -- vault kv destroy -versions=4 secre
 kubectl exec --namespace=vault vault-0 -- vault status
 # iteratate showing status of i instances
 for i in {0..2} ; do kubectl exec --namespace=vault vault-$i -- vault status ; done
+
+# port forward
+kubectl port-forward --namespace=vault vault-0 8200:8200
 
 # helm status
 helm status vault
