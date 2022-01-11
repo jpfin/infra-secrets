@@ -8,6 +8,6 @@ resources:
 configMapGenerator:
   - name: vault-values
     files:
-      - values.yaml=values.yaml
+      - values.yaml=values/standaloneWithLoadBalancer.yaml
 configurations:
   - kustomizeconfig.yaml
